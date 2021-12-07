@@ -27,7 +27,7 @@ public class Receita {
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="dd/MM/yyyy")
     private Date dt_receita;
 
-    @NotEmpty(message = "Deve ser informad um valor válido!")
+    @NotEmpty(message = "Deve ser informado um valor válido!")
     @Column(nullable = false)
     private double vl_receita;
 
