@@ -33,6 +33,13 @@ public class ReceitaController {
         return repository.findAll();
     }
 
+    @GetMapping("{id}")
+    public Receita listarPorId(@PathVariable Integer id){
+        return repository
+                .findById(id)
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Receita " + id + " não cadastrada!"));
+    }
+
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletar(@PathVariable Integer id){

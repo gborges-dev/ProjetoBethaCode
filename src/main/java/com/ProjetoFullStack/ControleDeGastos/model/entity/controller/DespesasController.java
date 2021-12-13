@@ -1,6 +1,7 @@
 package com.ProjetoFullStack.ControleDeGastos.model.entity.controller;
 
 import com.ProjetoFullStack.ControleDeGastos.model.entity.entity.Despesas;
+import com.ProjetoFullStack.ControleDeGastos.model.entity.entity.Receita;
 import com.ProjetoFullStack.ControleDeGastos.model.entity.repository.DespesasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,11 +9,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @RestController
 @RequestMapping("/api/despesas")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("*")
 public class DespesasController {
 
     private final DespesasRepository repository;
@@ -26,6 +28,11 @@ public class DespesasController {
     @ResponseStatus(HttpStatus.CREATED)
     public Despesas salvar(@Valid @RequestBody Despesas despesas){
         return repository.save(despesas);
+    }
+
+    @GetMapping
+    public List<Despesas> listar(){
+        return repository.findAll();
     }
 
     @GetMapping("{id}")
